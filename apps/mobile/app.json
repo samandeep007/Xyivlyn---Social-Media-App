@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Random Social Discovery",
+    "slug": "random-social-discovery",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "rsd",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

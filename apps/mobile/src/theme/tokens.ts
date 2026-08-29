@@ -1,0 +1,26 @@
+export const colors = {
+  background: '#FBFAFF',
+  surface: '#FFFFFF',
+  text: '#17131F',
+  textMuted: '#706A7C',
+  primary: '#7457FF',
+  primarySoft: '#EEE9FF',
+  secondary: '#F25BAA',
+  border: '#E9E4F1',
+} as const;
+
+export const spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xxl: 48,
+} as const;
+
+export const radius = {
+  sm: 10,
+  md: 16,
+  lg: 24,
+  pill: 999,
+} as const;
