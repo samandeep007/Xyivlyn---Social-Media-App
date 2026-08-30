@@ -1,24 +1,39 @@
-import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography } from '@/theme/tokens';
+import { Tabs } from 'expo-router';
 
-export default function AppLayout() {
+import { colors } from '@/theme/tokens';
+
+export default function AppTabsLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.textMuted,
+        tabBarInactiveTintColor: '#25314A',
         tabBarStyle: {
           backgroundColor: colors.surface,
-          borderTopColor: colors.border,
-          height: 72,
-          paddingTop: 8,
+          borderTopColor: '#ECEAF1',
+          borderTopWidth: 1,
+          height: 86,
+          paddingTop: 9,
           paddingBottom: 10,
+          shadowColor: '#111827',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.03,
+          shadowRadius: 8,
+          elevation: 5,
+        },
+        tabBarItemStyle: {
+          paddingVertical: 2,
+        },
+        tabBarIconStyle: {
+          marginBottom: 2,
         },
         tabBarLabelStyle: {
-          fontSize: typography.caption,
-          fontWeight: '600',
+          fontSize: 11,
+          lineHeight: 14,
+          fontWeight: '500',
         },
       }}
     >
@@ -26,41 +41,82 @@ export default function AppLayout() {
         name="discover"
         options={{
           title: 'Discover',
-          tabBarIcon: ({ color, size }) => <Ionicons name="sparkles-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'sparkles' : 'sparkles-outline'}
+              size={focused ? 28 : Math.max(size, 25)}
+              color={color}
+            />
+          ),
         }}
       />
+
       <Tabs.Screen
         name="connections"
         options={{
           title: 'Connections',
-          tabBarIcon: ({ color, size }) => <Ionicons name="people-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'people' : 'people-outline'}
+              size={Math.max(size, 25)}
+              color={color}
+            />
+          ),
         }}
       />
+
       <Tabs.Screen
         name="messages"
         options={{
           title: 'Messages',
-          tabBarIcon: ({ color, size }) => <Ionicons name="chatbubble-ellipses-outline" color={color} size={size} />,
+          tabBarBadge: 3,
+          tabBarBadgeStyle: {
+            backgroundColor: '#FF2D6F',
+            color: '#FFFFFF',
+            fontSize: 10,
+            fontWeight: '700',
+            minWidth: 19,
+            height: 19,
+            lineHeight: 18,
+            borderRadius: 10,
+          },
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'chatbubble' : 'chatbubble-outline'}
+              size={Math.max(size, 25)}
+              color={color}
+            />
+          ),
         }}
       />
+
       <Tabs.Screen
         name="journey"
         options={{
           title: 'Journey',
-          tabBarIcon: ({ color, size }) => <Ionicons name="map-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'trophy' : 'trophy-outline'}
+              size={Math.max(size, 25)}
+              color={color}
+            />
+          ),
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size }) => <Ionicons name="person-circle-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'person' : 'person-outline'}
+              size={Math.max(size, 25)}
+              color={color}
+            />
+          ),
         }}
       />
-      <Tabs.Screen name="conversation" options={{ href: null }} />
-      <Tabs.Screen name="campus" options={{ href: null }} />
-      <Tabs.Screen name="premium" options={{ href: null }} />
-      <Tabs.Screen name="settings" options={{ href: null }} />
     </Tabs>
   );
 }

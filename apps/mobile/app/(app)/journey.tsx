@@ -1,10 +1,22 @@
-import { Screen } from '@/components/Screen';
-import { AppPlaceholder } from '@/components/AppPlaceholder';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
-export default function JourneyScreen() {
+export default function ConnectionsScreen() {
   return (
-    <Screen>
-      <AppPlaceholder title="Journey" subtitle="Route connected. Full UI comes in its feature chunk." />
-    </Screen>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Connections</Text>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FAF8FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+  },
+});

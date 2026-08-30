@@ -1,11 +1,18 @@
 import type { PropsWithChildren } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+
 import { colors, spacing } from '@/theme/tokens';
 
-export function Screen({ children }: PropsWithChildren) {
+type ScreenProps = PropsWithChildren<{
+  padded?: boolean;
+}>;
+
+export function Screen({ children, padded = true }: ScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>{children}</View>
+      <View style={[styles.container, padded && styles.padded]}>
+        {children}
+      </View>
     </SafeAreaView>
   );
 }
@@ -15,9 +22,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+
   container: {
     flex: 1,
+    backgroundColor: colors.background,
+  },
+
+  padded: {
     paddingHorizontal: spacing.lg,
-    paddingTop: spacing.lg,
+    paddingVertical: spacing.md,
   },
 });
