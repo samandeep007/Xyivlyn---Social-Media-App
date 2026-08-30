@@ -53,7 +53,8 @@ export function Button({
         {...props}
         disabled={disabled || loading}
         style={(state) => [
-          styles.base,
+          fullWidth && styles.fullWidth,
+          (disabled || loading) && styles.disabled,
           state.pressed && styles.pressed,
           typeof style === 'function' ? style(state) : style,
         ]}
@@ -76,6 +77,9 @@ export function Button({
       disabled={disabled || loading}
       style={(state) => [
         styles.base,
+        styles[variant],
+        fullWidth && styles.fullWidth,
+        (disabled || loading) && styles.disabled,
         state.pressed && styles.pressed,
         typeof style === 'function' ? style(state) : style,
       ]}
