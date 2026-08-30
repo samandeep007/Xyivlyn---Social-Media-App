@@ -1,17 +1,33 @@
 import type { PropsWithChildren } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, spacing } from '@/theme/tokens';
+import { colors, layout } from '@/theme/tokens';
 
 type ScreenProps = PropsWithChildren<{
   padded?: boolean;
+  scroll?: boolean;
 }>;
 
-export function Screen({ children, padded = true }: ScreenProps) {
+export function Screen({ children, padded = true, scroll = false }: ScreenProps) {
+  if (scroll) {
+    return (
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <ScrollView
+          style={styles.flex}
+          contentContainerStyle={[styles.scrollContent, padded && styles.padded]}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.maxWidth}>{children}</View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={[styles.container, padded && styles.padded]}>
-        {children}
+        <View style={[styles.maxWidth, styles.flex]}>{children}</View>
       </View>
     </SafeAreaView>
   );
@@ -22,14 +38,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-
+  flex: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: colors.background,
   },
-
   padded: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
+    paddingHorizontal: layout.screenPadding,
+  },
+  maxWidth: {
+    width: '100%',
+    maxWidth: layout.contentMaxWidth,
+    alignSelf: 'center',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: 28,
   },
 });
